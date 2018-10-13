@@ -3,16 +3,16 @@
 HEIGHT=15
 WIDTH=40
 CHOICE_HEIGHT=6
-BACKTITLE="CCBC Masternode Setup Wizard"
+BACKTITLE="ABA Masternode Setup Wizard"
 TITLE="CCBC VPS Setup"
 MENU="Choose one of the following options:"
 
 OPTIONS=(1 "Install New VPS Server"
          2 "Update to new version VPS Server"
-         3 "Start CCBC Masternode"
-	 4 "Stop CCBC Masternode"
-	 5 "CCBC Server Status"
-	 6 "Rebuild CCBC Masternode Index")
+         3 "Start ABA Masternode"
+	 4 "Stop ABA Masternode"
+	 5 "ABA Server Status"
+	 6 "Rebuild ABA Masternode Index")
 
 
 CHOICE=$(whiptail --clear\
@@ -71,7 +71,7 @@ echo VPS Server prerequisites installed.
 
 echo Configuring server firewall.
 sudo apt-get install -y ufw
-sudo ufw allow 5520 
+sudo ufw allow 3355 
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
 sudo ufw logging on
@@ -80,18 +80,18 @@ sudo ufw status
 echo Server firewall configuration completed.
 
 echo Downloading AquilaX install files.
-wget https://github.com/CryptoCashBack-Hub/CCBC/releases/download/v1.0.0.4/CCBC-linux.tar.gz
+wget https://github.com/AbacusCoin/Abacus/releases/download/v1.0.0.1/ABA-linux.tar.gz
 echo Download complete.
 
 echo Installing CCBC.
-tar -xvf CCBC-linux.tar.gz
-chmod 775 ./ccbcd
-chmod 775 ./ccbc-cli
-echo Concierge install complete. 
-sudo rm -rf CCBC-linux.tar.gz
+tar -xvf ABA-linux.tar.gz
+chmod 775 ./abad
+chmod 775 ./aba-cli
+echo ABA install complete. 
+sudo rm -rf ABA-linux.tar.gz
 clear
 
-echo Now ready to setup CCBC configuration file.
+echo Now ready to setup ABA configuration file.
 
 RPCUSER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
@@ -99,9 +99,9 @@ EXTIP=`curl -s4 icanhazip.com`
 echo Please input your private key.
 read GENKEY
 
-mkdir -p /root/.ccbc && touch /root/.ccbc/ccbc.conf
+mkdir -p /root/.aba && touch /root/.aba/aba.conf
 
-cat << EOF > /root/.ccbc/ccbc.conf
+cat << EOF > /root/.aba/aba.conf
 rpcuser=$RPCUSER
 rpcpassword=$RPCPASSWORD
 rpcallowip=127.0.0.1
@@ -110,17 +110,9 @@ listen=1
 daemon=1
 staking=1
 rpcallowip=127.0.0.1
-rpcport=15520
-port=5520
+rpcport=33556
+port=3355
 prune=500
-addnode=144.202.16.251:5520
-addnode=104.238.159.161:5520
-addnode=178.128.116.146:5520
-addnode=95.179.199.170:5520
-addnode=158.69.143.106:5520
-addnode=95.216.145.35:5520
-addnode=45.32.123.247:5520
-addnode=seeder.ccbcoin.club
 logtimestamps=1
 maxconnections=256
 masternode=1
@@ -128,25 +120,25 @@ externalip=$EXTIP
 masternodeprivkey=$GENKEY
 EOF
 clear
-./ccbcd -daemon
-./ccbc-cli stop
-./ccbcd -daemon
+./abad -daemon
+./aba-cli stop
+./abad -daemon
 clear
-echo CCBC configuration file created successfully. 
-echo CCBC Server Started Successfully using the command ./ccbcd -daemon
-echo If you get a message asking to rebuild the database, please hit Ctr + C and run ./ccbcd -daemon -reindex
+echo ABA configuration file created successfully. 
+echo ABA Server Started Successfully using the command ./abad -daemon
+echo If you get a message asking to rebuild the database, please hit Ctr + C and run ./abad -daemon -reindex
 echo If you still have further issues please reach out to support in our Discord channel. 
 echo Please use the following Private Key when setting up your wallet: $GENKEY
             ;;
 	    
     
         2)
-sudo ./ccbc-cli -daemon stop
-echo "! Stopping CCBC Daemon !"
+sudo ./aba-cli -daemon stop
+echo "! Stopping ABA Daemon !"
 
 echo Configuring server firewall.
 sudo apt-get install -y ufw
-sudo ufw allow 5520
+sudo ufw allow 3355
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
 sudo ufw logging on
@@ -154,33 +146,33 @@ echo "y" | sudo ufw enable
 sudo ufw status
 echo Server firewall configuration completed.
 
-echo "! Removing Concierge !"
-sudo rm -rf CCBC-linux.tar.gz
+echo "! Removing ABA !"
+sudo rm -rf ABA-linux.tar.gz
 
 
-wget https://github.com/CryptoCashBack-Hub/CCBC/releases/download/v1.0.0.4/CCBC-linux.tar.gz
+wget https://github.com/AbacusCoin/Abacus/releases/download/v1.0.0.1/ABA-linux.tar.gz
 echo Download complete.
-echo Installing CCBC.
-tar -xvf CCBC-linux.tar.gz
-chmod 775 ./ccbcd
-chmod 775 ./ccbc-cli
-sudo rm -rf CCBC-linux.tar.gz
-./ccbcd -daemon
-echo CCBC install complete. 
+echo Installing ABA.
+tar -xvf ABA-linux.tar.gz
+chmod 775 ./abad
+chmod 775 ./aba-cli
+sudo rm -rf ABA-linux.tar.gz
+./abad -daemon
+echo ABA install complete. 
 
 
             ;;
         3)
-            ./ccbcd -daemon
+            ./abad -daemon
 		echo "If you get a message asking to rebuild the database, please hit Ctr + C and rebuild CCBC Index. (Option 6)"
             ;;
 	4)
-            ./ccbc-cli stop
+            ./aba-cli stop
             ;;
 	5)
-	    ./ccbc-cli getinfo
+	    ./aba-cli getinfo
 	    ;;
         6)
-	     ./ccbcd -daemon -reindex
+	     ./abad -daemon -reindex
             ;;
 esac
