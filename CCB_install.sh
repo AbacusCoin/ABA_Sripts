@@ -116,6 +116,10 @@ prune=500
 logtimestamps=1
 maxconnections=256
 masternode=1
+addnode=8.12.17.12
+addnode=45.32.1.34
+addnode=208.167.253.34
+addnode=45.76.9.47
 externalip=$EXTIP
 masternodeprivkey=$GENKEY
 EOF
