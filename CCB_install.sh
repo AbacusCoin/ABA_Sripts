@@ -4,7 +4,7 @@ HEIGHT=15
 WIDTH=40
 CHOICE_HEIGHT=6
 BACKTITLE="ABA Masternode Setup Wizard"
-TITLE="CCBC VPS Setup"
+TITLE="ABA VPS Setup"
 MENU="Choose one of the following options:"
 
 OPTIONS=(1 "Install New VPS Server"
@@ -116,10 +116,10 @@ prune=500
 logtimestamps=1
 maxconnections=256
 masternode=1
-addnode=8.12.17.12
-addnode=45.32.1.34
-addnode=208.167.253.34
-addnode=45.76.9.47
+addnode=159.203.18.9
+addnode=198.199.67.219
+addnode=178.62.125.79
+addnode=178.128.241.112
 externalip=$EXTIP
 masternodeprivkey=$GENKEY
 EOF
