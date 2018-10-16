@@ -80,7 +80,7 @@ sudo ufw status
 echo Server firewall configuration completed.
 
 echo Downloading AquilaX install files.
-wget https://github.com/AbacusCoin/Abacus/releases/download/v1.0.0.1/ABA-linux.tar.gz
+wget https://github.com/AbacusCoin/Abacus/releases/download/v1.0.0.2/ABA-linux.tar.gz
 echo Download complete.
 
 echo Installing CCBC.
@@ -154,7 +154,7 @@ echo "! Removing ABA !"
 sudo rm -rf ABA-linux.tar.gz
 
 
-wget https://github.com/AbacusCoin/Abacus/releases/download/v1.0.0.1/ABA-linux.tar.gz
+wget https://github.com/AbacusCoin/Abacus/releases/download/v1.0.0.2/ABA-linux.tar.gz
 echo Download complete.
 echo Installing ABA.
 tar -xvf ABA-linux.tar.gz
