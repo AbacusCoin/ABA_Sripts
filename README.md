@@ -1,6 +1,6 @@
 ![logo](https://github.com/AbacusCoin/Abacus/blob/master/src/qt/res/images/aba_logo_horizontalold.png)
 
-# ABA v1.0.0.1 Masternode Setup Guide [ Ubuntu 16.04 ]
+# ABA v1.0.0.2 Masternode Setup Guide [ Ubuntu 16.04 ]
 
 THIS GUIDE IS FOR ROOT USERS -
 
@@ -10,14 +10,14 @@ User=root
 Group=root
 ```
 
-Shell script to install a CCBC Masternode on a Linux server running Ubuntu 16.04. Use it on your own risk.
+Shell script to install a ABA Masternode on a Linux server running Ubuntu 16.04. Use it on your own risk.
 ***
 
 ## Private Key
 
 
 Steps generate your own private key. 
-1.  Download and install CCBC v1.0.0.4 for Windows -   Download Link  - https://github.com/AbacusCoin/Abacus/releases
+1.  Download and install ABA v1.0.0.2 for Windows -   Download Link  - https://github.com/AbacusCoin/Abacus/releases
 2.  Go to **Tools -> Click "Debug Console"** 
 3.  Type the following command: **masternode genkey**  
 4. You now have your generated **Private Key**  (MasternodePrivKey)
@@ -107,7 +107,7 @@ startmasternode alias 0 MN1
 14. Login to your VPS and check your masternode status by running the following command:.
 
 ```
-./ccbc-cli masternode status
+./aba-cli masternode status
 ```
 
 You want to see **"Masternode started successfully and Status 4"**
@@ -121,5 +121,3 @@ You want to see **"Masternode started successfully and Status 4"**
 ./aba-cli mnsync status
 ./aba-cli masternode status
 ```
-  
-Thank you too Franco#6184 for catching some errors! :)
